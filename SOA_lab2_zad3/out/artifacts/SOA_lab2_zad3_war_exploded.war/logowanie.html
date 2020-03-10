@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Logowanie</title>
+    <script>
+
+        function checkCredentials() {
+
+            var logins=["test","test2","test3"]
+            var map=new Map();
+            map.set("test","abc").set("test2","abcd").set("test3","abcde");
+
+
+            if(document.forms["Form"]["login"].value==null || document.forms["Form"]["login"].value===""){
+
+                window.alert("Wpisz login");
+                location=location;
+            }
+            else if (document.forms["Form"]["password"].value==null || document.forms["Form"]["password"].value==""){
+                window.alert("Wpisz hasło");
+                location=location;
+            }
+            else{
+                if(logins.includes(document.forms["Form"]["login"].value) && map.get(document.forms["Form"]["login"].value)==document.forms["Form"]["password"].value){
+                    document.getElementById("Form").submit();
+                }
+                else{
+                    window.alert("Błędne dane logowania");
+                    location=location;
+
+                }
+
+            }
+
+        }
+    </script>
+</head>
+<body>
+
+<form action="login_servlet" name="Form" id="Form" method="post" >
+    Login: <input type="text" name="login" id="login"/>
+    Hasło: <input type="text" name="password" id="password"/>
+    <button type="button" onclick="checkCredentials()"/>Zaloguj</button>
+</form>
+
+</body>
+</html>
